@@ -140,9 +140,24 @@ python debate/main.py "Is remote work better than office work?"
 python debate/main.py "Should college degrees be required for software jobs?"
 ```
 
-Each run produces a JSON record.
+Each run produces a JSON record under `runs/` (that directory is gitignored).
 
 ---
+
+## Tests
+
+Judge JSON parsing is covered without live API calls:
+
+```
+pip install -r requirements.txt
+pytest
+```
+
+---
+
+## License
+
+MIT
 
 ## Future Extensions (Not Implemented Yet)
 
