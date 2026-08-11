@@ -4,8 +4,8 @@ from providers.openai_provider import call_openai
 from prompts.judge import judge_prompt
 from config import OPENAI_NAME, ANTHROPIC_NAME
 
-def judge_debate(topic, for_side, against_side):
-    raw = call_openai(judge_prompt(topic, for_side, against_side), temperature=0)
+
+def parse_judge_response(raw: str) -> dict:
     cleaned = raw.strip()
     fenced = re.match(r"^```(?:json)?\s*(.+?)\s*```$", cleaned, re.DOTALL | re.IGNORECASE)
     if fenced:
@@ -31,3 +31,8 @@ def judge_debate(topic, for_side, against_side):
         data["score_anthropic"] = data["score_against"]
 
     return data
+
+
+def judge_debate(topic, for_side, against_side):
+    raw = call_openai(judge_prompt(topic, for_side, against_side), temperature=0)
+    return parse_judge_response(raw)
