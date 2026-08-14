@@ -3,7 +3,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "debate"))
 
-from judge import parse_judge_response
+from judge_parse import parse_judge_response
 
 
 def test_parse_plain_json():
